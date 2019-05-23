@@ -1,0 +1,21 @@
+@font-face {
+    font-family: 'EA logo';
+    src: url(../fonts/ea-style/ea.ttf);
+}
+
+#entry-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+	text-align: center;
+	z-index: 100;
+    display:block;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 60px;
+    font-family: 'EA logo';
+}
+
+#entry-text:hover {
+    cursor: pointer;
+}

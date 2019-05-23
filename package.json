@@ -1,0 +1,26 @@
+{
+  "name": "3jstest",
+  "version": "1.0.0",
+  "description": "Test of three.js capabilities",
+  "main": "index.js",
+  "dependencies": {
+    "phaser": "^3.17.0",
+    "whs": "^2.1.9"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.8.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ML1104/3JSpractice.git"
+  },
+  "author": "Milos Lazarevic",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ML1104/3JSpractice/issues"
+  },
+  "homepage": "https://github.com/ML1104/3JSpractice#readme"
+}
