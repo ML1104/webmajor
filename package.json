@@ -1,7 +1,7 @@
 {
-  "name": "3jstest",
+  "name": "webmajor",
   "version": "1.0.0",
-  "description": "Test of three.js capabilities",
+  "description": "Major project for Web Development",
   "main": "index.js",
   "dependencies": {
     "phaser": "^3.17.0",
@@ -15,12 +15,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ML1104/3JSpractice.git"
+    "url": "git+https://github.com/ML1104/webmajor.git"
   },
   "author": "Milos Lazarevic",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ML1104/3JSpractice/issues"
+    "url": "https://github.com/ML1104/webmajor/issues"
   },
-  "homepage": "https://github.com/ML1104/3JSpractice#readme"
+  "homepage": "https://github.com/ML1104/webmajor#readme"
 }
