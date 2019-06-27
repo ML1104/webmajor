@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Game5</title>
+    <title>Space Defender</title>
 
     <script src="js/phaser.js"></script>
 </head>
@@ -18,8 +18,8 @@
             height: 600,
             parent: 'phaser-example',
             physics: {
-                default: 'impact',
-                impact: {
+                default: 'arcade',
+                arcade: {
                     setBounds: {
                         x: 0,
                         y: 0,
@@ -135,11 +135,20 @@
 
             // Destroy Aliens
 
-            // this.physics.add.overlap(bullets, face, destroyAlien, null, this);
+            var missle = this.impact.add.image('bullet', 'assets/sprites/bullets/bullet6.png');
+            var alien = this.impact.add.image('face', 'assets/sprites/metalface78x92.png', { frameWidth: 78, frameHeight: 92 });
 
-            // function destroyAlien(bullets, face) {
-            //     face.disableBody(true, true)
-            // }
+
+            missle.setTypeA().setCheckAgainstB().setActiveCollision();
+            alien.setTypeB().setCheckAgainstA().setActiveCollision();
+
+            this.impact.world.on('COLLIDE_EVENT', destroyAlien);
+
+        }
+
+        function destroyAlien(event) {
+                // event.gameObjectA.disableBody(true, true);
+                gameOver = true;
         }
 
         function update(time, delta) {
@@ -328,7 +337,7 @@
                 var x = Phaser.Math.Between(100, 3100);
                 var y = Phaser.Math.Between(100, 300);
 
-                var face = this.impact.add.sprite(x, y, 'face').play('metaleyes');
+                var face = this.physics.add.sprite(x, y, 'face').play('metaleyes');
 
                 face.setLiteCollision().setBounce(1).setBodyScale(0.5);
                 face.setVelocity(Phaser.Math.Between(20, 60), Phaser.Math.Between(20, 60));
