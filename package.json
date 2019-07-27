@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "phaser": "^3.17.0",
+    "sweetalert": "^2.1.2",
     "whs": "^2.1.9"
   },
   "devDependencies": {
