@@ -35,3 +35,7 @@
 .swal-button--false {
     background-color: #b64c4c;
 }
+
+#sideQuestion {
+    font-weight: bold;
+}

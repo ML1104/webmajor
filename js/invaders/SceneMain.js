@@ -78,7 +78,6 @@ class SceneMain extends Phaser.Scene {
         console.log(this.player);
 
         var chances = 1;
-        var savedScore = 0;
         var trialNumber = 0;
 
         var playerCharacter = this.player;
@@ -401,11 +400,11 @@ class SceneMain extends Phaser.Scene {
                 enemy.explode(true);
                 playerLaser.destroy();
                 score += 10;
-                scoreText.setText('Score ' + score);
+                scoreText.setText('Score: ' + score);
             }
         });
 
-        scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#ffffff' });
+        scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#ffffff' });
 
         this.physics.add.overlap(this.player, this.enemies, function (player, enemy) {
             if (!player.getData("isDead") &&

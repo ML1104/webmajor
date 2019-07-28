@@ -11,6 +11,8 @@
 </head>
 
 <body>
+    <div id="sideQuestion"></div>
+
     <script>
         var config = {
             type: Phaser.WEBGL,
@@ -25,8 +27,37 @@
             }
         };
 
+        var randomTask = new Array();
+        randomTask[0] = 1;
+        randomTask[1] = 2;
+        randomTask[2] = 3;
+        randomTask[3] = 4;
+        randomTask[4] = 5;
+        randomTask[5] = 6;
+
+        var randomized = Math.floor(Math.random() * randomTask.length);
+        var task = randomTask[randomized];
+        var checkTask = false;
+        console.log(task);
+
+        assignTask();
+
+        function refreshTask() {
+            task = 0;
+            task = Math.floor(Math.random() * randomTask.length);
+            assignTask();
+        }
+
+        var score = 0;
+        var scoreText;
+        var newScore = 0;
+
+        var pickupText;
+        var totalPickups;
+
         var snake;
         var food;
+        var finish;
         var cursors;
 
         //  Direction consts
@@ -39,6 +70,7 @@
 
         function preload() {
             this.load.image('food', 'assets/games/snake/food.png');
+            this.load.image('finish', 'assets/games/snake/finish.png');
             this.load.image('body', 'assets/games/snake/body.png');
         }
 
@@ -63,6 +95,35 @@
 
                 eat: function () {
                     this.total++;
+                    totalPickups = this.total;
+                    score += 10;
+                    scoreText.setText('Score: ' + score);
+                    pickupText.setText('Picked up: ' + totalPickups);
+                }
+
+            });
+
+            scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '24px', fill: '#000' });
+            pickupText = this.add.text(450, 16, 'Picked up: 0', { fontSize: '24px', fill: '#000' })
+
+            var Finish = new Phaser.Class({
+
+                Extends: Phaser.GameObjects.Image,
+
+                initialize:
+
+                    function Finish(scene, x, y) {
+                        Phaser.GameObjects.Image.call(this, scene)
+
+                        this.setTexture('finish');
+                        this.setPosition(x * 10, y * 10);
+                        this.setOrigin(0);
+
+                        scene.children.add(this);
+                    },
+
+                eat: function () {
+                    checkTask = true;
                 }
 
             });
@@ -173,7 +234,9 @@
                 },
 
                 grow: function () {
-                    var newPart = this.body.create(this.tail.x, this.tail.y, 'body');
+                    for (i = 0; i < 9; i++) {
+                        var newPart = this.body.create(this.tail.x, this.tail.y, 'body');
+                    }
 
                     newPart.setOrigin(0);
                 },
@@ -182,12 +245,25 @@
                     if (this.head.x === food.x && this.head.y === food.y) {
                         this.grow();
 
+                        console.log(food.total);
                         food.eat();
 
                         //  For every 5 items of food eaten we'll increase the snake speed a little
                         if (this.speed > 20 && food.total % 5 === 0) {
                             this.speed -= 5;
                         }
+
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                },
+
+                collideWithFinish: function (finish) {
+                    if (this.head.x === finish.x && this.head.y === finish.y) {
+
+                        finish.eat();
 
                         return true;
                     }
@@ -213,6 +289,8 @@
             });
 
             food = new Food(this, 3, 4);
+
+            finish = new Finish(this, 3, 4);
 
             snake = new Snake(this, 8, 8);
 
@@ -251,6 +329,155 @@
                 if (snake.collideWithFood(food)) {
                     repositionFood();
                 }
+
+                if (snake.collideWithFinish(finish)) {
+                    repositionFood();
+                    validateScore();
+                }
+            }
+        }
+
+        function validateScore() {
+            switch (task) {
+                case 1:
+                    if (food.total > 3 && checkTask === true) {
+                        snake.alive = false;
+                        alert('Incorrect Loop')
+                    } else if (food.total > 3 && checkTask === false) {
+                        score - (score - 30)
+                    } else if (food.total == 3 && checkTask === true) {
+                        document.getElementById('sideQuestion').innerHTML = "";
+                        food.total = 0;
+                        totalPickups = food.total;
+                        pickupText.setText('Picked up: ' + totalPickups);
+                        newScore = 50;
+                        score += newScore;
+                        task = 0;
+                        refreshTask();
+                    }
+                    break;
+
+                case 2:
+                    if (food.total > 6 && checkTask === true) {
+                        snake.alive = false;
+                        alert('Incorrect Loop')
+                    } else if (food.total > 6 && checkTask === false) {
+                        score - (score - 60)
+                    } else if (food.total == 6 && checkTask === true) {
+                        document.getElementById('sideQuestion').innerHTML = "";
+                        food.total = 0;
+                        totalPickups = food.total;
+                        pickupText.setText('Picked up: ' + totalPickups);
+                        newScore = 50;
+                        score += newScore;
+                        task = 0;
+                        refreshTask();
+                    }
+                    break;
+
+                case 3:
+                    if (food.total > 8 && checkTask === true) {
+                        snake.alive = false;
+                        alert('Incorrect Loop')
+                    } else if (food.total > 8 && checkTask === false) {
+                        score - (score - 80)
+                    } else if (food.total == 8 && checkTask === true) {
+                        document.getElementById('sideQuestion').innerHTML = "";
+                        food.total = 0;
+                        totalPickups = food.total;
+                        pickupText.setText('Picked up: ' + totalPickups);
+                        newScore = 50;
+                        score += newScore;
+                        task = 0;
+                        refreshTask();
+                    }
+                    break;
+
+
+                case 4:
+                    if (food.total > 10 && checkTask === true) {
+                        snake.alive = false;
+                        alert('Incorrect Loop')
+                    } else if (food.total > 10 && checkTask === false) {
+                        score - (score - 100)
+                    } else if (food.total == 10 && checkTask === true) {
+                        document.getElementById('sideQuestion').innerHTML = "";
+                        food.total = 0;
+                        totalPickups = food.total;
+                        pickupText.setText('Picked up: ' + totalPickups);
+                        newScore = 100;
+                        score += newScore;
+                        task = 0;
+                        refreshTask();
+                    }
+                    break;
+
+                case 5:
+                    if (food.total > 1 && checkTask === true) {
+                        snake.alive = false;
+                        alert('Incorrect Loop')
+                    } else if (food.total > 1 && checkTask === false) {
+                        score - (score - 10)
+                    } else if (food.total == 1 && checkTask === true) {
+                        document.getElementById('sideQuestion').innerHTML = "";
+                        food.total = 0;
+                        totalPickups = food.total;
+                        pickupText.setText('Picked up: ' + totalPickups);
+                        newScore = 10;
+                        score += newScore;
+                        task = 0;
+                        refreshTask();
+                    }
+                    break;
+
+
+                case 6:
+                    if (food.total > 5 && checkTask === true) {
+                        snake.alive = false;
+                        alert('Incorrect Loop')
+                    } else if (food.total > 5 && checkTask === false) {
+                        score - (score - 50)
+                    } else if (food.total == 5 && checkTask === true) {
+                        document.getElementById('sideQuestion').innerHTML = "";
+                        food.total = 0;
+                        totalPickups = food.total;
+                        pickupText.setText('Picked up: ' + totalPickups);
+                        newScore = 50;
+                        score += newScore;
+                        task = 0;
+                        refreshTask();
+                    }
+                    break;
+
+            }
+        }
+
+        function assignTask() {
+            switch (task) {
+                case 1:
+                    document.getElementById('sideQuestion').innerHTML = "for (i = 0; i < 4; i++)";
+                    break;
+
+                case 2:
+                    document.getElementById('sideQuestion').innerHTML = "for (i = 0; i < 7; i++)";
+                    break;
+
+                case 3:
+                    document.getElementById('sideQuestion').innerHTML = "for (i = 0; i < 9; i++)";
+                    break;
+
+                case 4:
+                    document.getElementById('sideQuestion').innerHTML = "for (i = 0; i < 11; i++)";
+                    break;
+
+
+                case 5:
+                    document.getElementById('sideQuestion').innerHTML = "for (i = 0; i < 2; i++)";
+                    break;
+
+                case 6:
+                    document.getElementById('sideQuestion').innerHTML = "for (i = 0; i < 6; i++)";
+                    break;
             }
         }
 
@@ -282,12 +509,14 @@
 
             //  Purge out false positions
             var validLocations = [];
+            var validFinishLocations = [];
 
             for (var y = 0; y < 30; y++) {
                 for (var x = 0; x < 40; x++) {
                     if (testGrid[y][x] === true) {
                         //  Is this position valid for food? If so, add it here ...
                         validLocations.push({ x: x, y: y });
+                        validFinishLocations.push({ x: x, y: y });
                     }
                 }
             }
@@ -295,9 +524,11 @@
             if (validLocations.length > 0) {
                 //  Use the RNG to pick a random food position
                 var pos = Phaser.Math.RND.pick(validLocations);
+                var finishPos = Phaser.Math.RND.pick(validFinishLocations);
 
                 //  And place it
                 food.setPosition(pos.x * 16, pos.y * 16);
+                finish.setPosition(finishPos.x * 16, finishPos.y * 16);
 
                 return true;
             }
