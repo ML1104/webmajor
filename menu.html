@@ -1,22 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="js/three.js"></script>
+    <link rel="stylesheet" href="css/style.css">
     <title>Menu</title>
+    <script src="js/effects.js"></script>
 </head>
+
 <body>
-    <div>
-        <a href="invaders.html">Invaders</a>
-        <a href="truefalse.html">True or False</a>
-        <a href="snake.html">Snake</a>
-        <a href="defender.html">Defender</a>
-        <a href="impossible.html">Impossible Game</a>
-        <a href="rpg.html">Treasure Hunt RPG</a>
-        <a href="millionaire.html">Millionaire</a>
-        <a href="index.html">Back</a>
+    <div class="centerItems">
+        <div class="card" onclick="playInvaders()">
+            <img src="assets/profile/ufo.png" alt="ufo by Pixel Buddha">
+            <div class="container">
+                <h4>Space Invaders</h4>
+            </div>
+        </div>
+        <div class="card" onclick="playBomb()">
+            <img src="assets/profile/bomb.png" alt="bomb by Freepik">
+            <div class="container">
+                <h4>Bomb Rush</h4>
+            </div>
+        </div>
+        <div class="card" onclick="playSnake()">
+            <img src="assets/profile/snake.png" alt="snake by Freepik">
+            <div class="container">
+                <h4>Pixel Snake</h4>
+            </div>
+        </div>
+        <div class="card" onclick="playHunt()">
+            <img src="assets/profile/treasure.png" alt="treasure by Smashicons">
+            <div class="container">
+                <h4>Treasure Hunt</h4>
+            </div>
+        </div>
     </div>
 </body>
+
 </html>
