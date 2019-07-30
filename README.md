@@ -6,11 +6,11 @@ This repository contains a selection of games created with PhaserJS. They are us
 
 This project is meant to accompany a written paper based on the intentions, origins, and outcomes of this research. In short, the research is a pilot study which may or may not justify a larger research on the topic depending on the results acquired. 
 
-# Guide
+## Guide
 
 Start a local web server and open the index.html
 
-# Credits
+### Credits
 
 ufo.png Icon made by Pixel Buddha from www.flaticon.com
 
