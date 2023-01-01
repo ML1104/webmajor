@@ -4,7 +4,7 @@
   "description": "Major project for Web Development",
   "main": "index.js",
   "dependencies": {
-    "phaser": "^3.17.0",
+    "phaser": "^3.55.2",
     "sweetalert": "^2.1.2",
     "whs": "^2.1.9"
   },
